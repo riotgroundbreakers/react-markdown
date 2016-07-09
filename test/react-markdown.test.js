@@ -15,7 +15,7 @@ describe('ReactMarkdown', function() {
         '# Demo\n\n',
         'I was *rendered* using __React__ at ' + testDate,
         ' and it was so much FUN!', '\n\n',
-        'Lets do it <i>again</i>!\nYeah?'
+        'Lets do it <i>again</i>!\nYeah?\n\n<div class="foo">Blocks of HTML are fun</div>\n\n'
     ].join('');
 
     it('should not set a class on container if no className is passed as prop', function() {
@@ -34,10 +34,12 @@ describe('ReactMarkdown', function() {
         expect(ReactDom.findDOMNode(rendered).getAttribute('class')).to.equal('foo bar');
     });
 
-    it('should have rendered a div with the right children', function() {
+    it.only('should have rendered a div with the right children', function() {
         var rendered = TestUtils.renderIntoDocument(
             React.createElement(ReactMarkdown, { source: testMarkdown })
         );
+
+        console.log(ReactDom.findDOMNode(rendered).innerHTML)
 
         expect(ReactDom.findDOMNode(rendered).tagName).to.equal('DIV');
         expect(ReactDom.findDOMNode(rendered).innerHTML).to.contain(testDate);

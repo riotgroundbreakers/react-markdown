@@ -1,10 +1,9 @@
 'use strict';
 
 var React = require('react');
-var Parser = require('commonmark').Parser;
-var ReactRenderer = require('commonmark-react-renderer');
+var remark = require('remark');
+var reactRenderer = require('remark-react');
 
-var parser = new Parser();
 var propTypes = React.PropTypes;
 
 var ReactMarkdown = React.createClass({
@@ -35,31 +34,14 @@ var ReactMarkdown = React.createClass({
 
     render: function() {
         var containerProps = {};
-        var renderer = new ReactRenderer(this.props);
-        var ast = parser.parse(this.props.source || '');
-
-        if (this.props.walker) {
-            var walker = ast.walker();
-            var event;
-
-            while ((event = walker.next())) {
-                this.props.walker.call(this, event);
-            }
-        }
-
         if (this.props.className) {
             containerProps.className = this.props.className;
         }
 
-        return React.createElement.apply(React,
-            [this.props.containerTagName, containerProps]
-                .concat(renderer.render(ast))
-        );
+        var children = remark().use(reactRenderer, {sanitize: false}).process(this.props.source);
+        var args = [this.props.containerTagName, containerProps].concat(children);
+        return React.createElement.apply(React, args);
     }
 });
-
-ReactMarkdown.types = ReactRenderer.types;
-ReactMarkdown.renderers = ReactRenderer.renderers;
-ReactMarkdown.uriTransformer = ReactRenderer.uriTransformer;
 
 module.exports = ReactMarkdown;
