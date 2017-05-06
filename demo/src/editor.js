@@ -1,28 +1,27 @@
-var React = require('react')
-var CodeMirror = window.CodeMirrorEditor
+const React = require('react')
+const PropTypes = require('prop-types')
+const CodeMirror = window.CodeMirrorEditor
 
-module.exports = React.createClass({
-  displayName: 'Editor',
+function Editor(props) {
+  return (
+    <form className="editor pure-form">
+      <CodeMirror
+        mode="markdown"
+        theme="monokai"
+        value={props.value}
+        onChange={props.onChange}
+      />
+    </form>
+  )
+}
 
-  propTypes: {
-    onChange: React.PropTypes.func.isRequired,
-    value: React.PropTypes.string
-  },
+Editor.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string
+}
 
-  handleInputChange: function (evt) {
-    this.props.onChange(evt.target.value)
-  },
+Editor.defaultProps = {
+  value: ''
+}
 
-  render: function () {
-    return (
-      <form className="editor pure-form">
-        <CodeMirror
-          mode="markdown"
-          theme="monokai"
-          value={this.props.value}
-          onChange={this.handleInputChange}
-        />
-      </form>
-    )
-  }
-})
+module.exports = Editor

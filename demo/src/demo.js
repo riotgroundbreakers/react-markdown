@@ -1,16 +1,17 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var assign = require('lodash.assign')
-var Editor = require('./editor')
-var CodeBlock = require('./code-block')
-var MarkdownControls = require('./markdown-controls')
-var Markdown = require('../../')
+const React = require('react')
+const ReactDOM = require('react-dom')
+const Editor = require('./editor')
+const CodeBlock = require('./code-block')
+const MarkdownControls = require('./markdown-controls')
+const Markdown = require('../../')
 
-var Demo = module.exports = React.createClass({
-  displayName: 'Demo',
+class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props)
 
-  getInitialState: function () {
-    return {
+    this.handleControlsChange = this.handleControlsChange.bind(this)
+    this.handleMarkdownChange = this.handleMarkdownChange.bind(this)
+    this.state = {
       markdownSrc: [
         '# Live demo\n\nChanges are automatically rendered as you type.\n\n* Follows the ',
         '[CommonMark](http://commonmark.org/) spec\n* Renders actual, "native" React DOM ',
@@ -28,19 +29,17 @@ var Demo = module.exports = React.createClass({
 
       htmlMode: 'raw'
     }
-  },
+  }
 
-  handleMarkdownChange: function (md) {
-    this.setState({
-      markdownSrc: md
-    })
-  },
+  handleMarkdownChange(evt) {
+    this.setState({markdownSrc: evt.target.value})
+  }
 
-  handleControlsChange: function (mode) {
+  handleControlsChange(mode) {
     this.setState({htmlMode: mode})
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <div className="demo">
         <div className="editor-pane">
@@ -61,16 +60,16 @@ var Demo = module.exports = React.createClass({
             source={this.state.markdownSrc}
             skipHtml={this.state.htmlMode === 'skip'}
             escapeHtml={this.state.htmlMode === 'escape'}
-            renderers={assign({}, Markdown.renderers, {
-              CodeBlock: CodeBlock
-            })}
+            renderers={{code: CodeBlock}}
           />
         </div>
       </div>
     )
   }
-})
+}
 
 if (typeof window !== 'undefined') {
   ReactDOM.render(<Demo />, document.getElementById('main'))
 }
+
+module.exports = Demo

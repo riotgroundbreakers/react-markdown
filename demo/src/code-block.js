@@ -1,34 +1,45 @@
-var React = require('react')
-var PureRenderMixin = require('react-addons-pure-render-mixin')
-var hljs = window.hljs
+const React = require('react')
+const PropTypes = require('prop-types')
+const hljs = window.hljs
 
-var CodeBlock = React.createClass({
-  displayName: 'CodeBlock',
-  mixins: [PureRenderMixin],
-  propTypes: {
-    literal: React.PropTypes.string,
-    language: React.PropTypes.string
-  },
+class CodeBlock extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.setRef = this.setRef.bind(this)
+  }
 
-  componentDidMount: function () {
+  setRef(el) {
+    this.codeEl = el
+  }
+
+  componentDidMount() {
     this.highlightCode()
-  },
+  }
 
-  componentDidUpdate: function () {
+  componentDidUpdate() {
     this.highlightCode()
-  },
+  }
 
-  highlightCode: function () {
-    hljs.highlightBlock(this.refs.code)
-  },
+  highlightCode() {
+    hljs.highlightBlock(this.codeEl)
+  }
 
-  render: function () {
+  render() {
     return (
       <pre>
-        <code ref="code" className={this.props.language}>{this.props.literal}</code>
+        <code ref={this.setRef} className={this.props.language}>{this.props.value}</code>
       </pre>
     )
   }
-})
+}
 
-module.exports = React.createFactory(CodeBlock)
+CodeBlock.defaultProps = {
+  language: ''
+}
+
+CodeBlock.propTypes = {
+  value: PropTypes.string.isRequired,
+  language: PropTypes.string
+}
+
+module.exports = CodeBlock
