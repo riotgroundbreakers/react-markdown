@@ -239,6 +239,20 @@ it('should unwrap child nodes from disallowed nodes, if unwrapDisallowed option 
   expect(component.toJSON()).toMatchSnapshot()
 })
 
+it('should render tables', () => {
+  const input = [
+    'Languages are fun, right?', '',
+    '| ID  | English | Norwegian | Italian |',
+    '| :-- | :-----: | --------: | ------- |',
+    '| 1   | one     | en        | uno     |',
+    '| 2   | two     | to        | due     |',
+    '| 3   | three   | tre       | tre     |',
+    '',
+  ].join('\n')
+
+  expect(renderHTML(<Markdown source={input} />)).toMatchSnapshot()
+})
+
 describe('should skip nodes that are defined as disallowed', () => {
   var samples = {
     html: {input: 'Foo<strong>bar</strong>', shouldNotContain: 'Foo<span><strong>'},
