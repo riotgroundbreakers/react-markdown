@@ -117,17 +117,6 @@ function getNodeProps (node, key, opts, renderer, parent, index) { // eslint-dis
       props.escapeHtml = opts.escapeHtml
       props.skipHtml = opts.skipHtml
       break
-
-    // Not yet touched
-    case 'html_inline':
-    case 'html_block':
-      props.isBlock = node.type === 'html_block'
-      props.escapeHtml = opts.escapeHtml
-      props.skipHtml = opts.skipHtml
-      break
-    case 'softbreak':
-      props.softBreak = opts.softBreak
-      break
     default:
   }
 

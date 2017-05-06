@@ -8,6 +8,35 @@ exports[`can render the most basic of documents (single paragraph) 1`] = `
 </div>
 `;
 
+exports[`should be able to override renderers 1`] = `
+<div>
+  <span
+    className="heading level-1"
+  >
+    Header
+  </span>
+  <p>
+    Paragraph
+  </p>
+  <span
+    className="heading level-2"
+  >
+    New header
+  </span>
+  <ol>
+    <li>
+      List item
+    </li>
+    <li>
+      List item 2
+    </li>
+  </ol>
+  <p>
+    Foo
+  </p>
+</div>
+`;
+
 exports[`should be able to render inline code 1`] = `
 <div>
   <p>

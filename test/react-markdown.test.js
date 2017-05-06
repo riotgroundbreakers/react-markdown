@@ -346,3 +346,10 @@ it('should be able to use a custom function to determine if the node should be a
     '<p>Also check out </p>'
   ].join(''))
 })
+
+it('should be able to override renderers', () => {
+  const input = '# Header\n\nParagraph\n## New header\n1. List item\n2. List item 2\n\nFoo'
+  const heading = props => <span className={`heading level-${props.level}`}>{props.children}</span>
+  const component = renderer.create(<Markdown source={input} renderers={{heading: heading}} />)
+  expect(component.toJSON()).toMatchSnapshot()
+})
