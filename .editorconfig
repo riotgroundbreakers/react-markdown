@@ -9,7 +9,7 @@ indent_style = space
 indent_size = tab
 
 # Number of columns representing a tab character
-tab_width = 4
+tab_width = 2
 
 # Use line-feed as EOL indicator
 end_of_line = lf
@@ -24,4 +24,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.md]
+trim_trailing_whitespace = false
+
+[*.snap]
 trim_trailing_whitespace = false

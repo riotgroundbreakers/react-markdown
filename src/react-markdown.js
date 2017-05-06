@@ -1,47 +1,85 @@
-'use strict';
+'use strict'
 
-var React = require('react');
-var remark = require('remark');
-var reactRenderer = require('remark-react');
+var React = require('react')
+var unified = require('unified')
+var parse = require('remark-parse')
+var objectAssign = require('object-assign')
+var defaultRenderers = require('./renderers')
+var getDefinitions = require('./get-definitions')
+var astToReact = require('./ast-to-react')
+var wrapTableRows = require('./wrap-table-rows')
+var disallowNode = require('./plugins/disallow-node')
 
-var propTypes = React.PropTypes;
+var allTypes = Object.keys(defaultRenderers)
+var PropTypes = React.PropTypes
 
 var ReactMarkdown = React.createClass({
-    displayName: 'ReactMarkdown',
+  displayName: 'ReactMarkdown',
 
-    propTypes: {
-        className: propTypes.string,
-        source: propTypes.string.isRequired,
-        containerTagName: propTypes.string,
-        sourcePos: propTypes.bool,
-        escapeHtml: propTypes.bool,
-        skipHtml: propTypes.bool,
-        softBreak: propTypes.string,
-        allowNode: propTypes.func,
-        allowedTypes: propTypes.array,
-        disallowedTypes: propTypes.array,
-        transformLinkUri: propTypes.func,
-        unwrapDisallowed: propTypes.bool,
-        renderers: propTypes.object,
-        walker: propTypes.func
-    },
+  propTypes: {
+    className: PropTypes.string,
+    source: PropTypes.string,
+    children: PropTypes.string,
+    sourcePos: PropTypes.bool,
+    escapeHtml: PropTypes.bool,
+    skipHtml: PropTypes.bool,
+    softBreak: PropTypes.string,
+    allowNode: PropTypes.func,
+    allowedTypes: PropTypes.arrayOf(PropTypes.oneOf(allTypes)),
+    disallowedTypes: PropTypes.arrayOf(PropTypes.oneOf(allTypes)),
+    transformLinkUri: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    transformImageUri: PropTypes.func,
+    unwrapDisallowed: PropTypes.bool,
+    renderers: PropTypes.object
+  },
 
-    getDefaultProps: function() {
-        return {
-            containerTagName: 'div'
-        };
-    },
-
-    render: function() {
-        var containerProps = {};
-        if (this.props.className) {
-            containerProps.className = this.props.className;
-        }
-
-        var children = remark().use(reactRenderer, {sanitize: false}).process(this.props.source);
-        var args = [this.props.containerTagName, containerProps].concat(children);
-        return React.createElement.apply(React, args);
+  getDefaultProps: function () {
+    return {
+      renderers: {},
+      escapeHtml: true,
+      skipHtml: false
     }
-});
+  },
 
-module.exports = ReactMarkdown;
+  render: function () {
+    var props = this.props
+    var src = props.source || props.children || ''
+
+    if (props.allowedTypes && props.disallowedTypes) {
+      throw new Error('Only one of `allowedTypes` and `disallowedTypes` should be defined')
+    }
+
+    var renderers = objectAssign({}, defaultRenderers, props.renderers)
+    var plugins = [wrapTableRows]
+
+    var disallowedTypes = props.disallowedTypes || []
+    if (props.allowedTypes) {
+      disallowedTypes = allTypes.filter(function (type) {
+        return type !== 'root' && props.allowedTypes.indexOf(type) === -1
+      })
+    }
+
+    var removalMethod = props.unwrapDisallowed ? 'unwrap' : 'remove'
+    if (disallowedTypes.length > 0) {
+      plugins.push(disallowNode.ofType(disallowedTypes, removalMethod))
+    }
+
+    if (props.allowNode) {
+      plugins.push(disallowNode.ifNotMatch(props.allowNode, removalMethod))
+    }
+
+    var rawAst = unified().use(parse).parse(src)
+    var ast = plugins.reduce(function (node, plugin) {
+      return plugin(node)
+    }, rawAst)
+
+    var renderProps = objectAssign({}, props, {
+      renderers: renderers,
+      definitions: getDefinitions(ast)
+    })
+
+    return astToReact(ast, renderProps)
+  }
+})
+
+module.exports = ReactMarkdown
