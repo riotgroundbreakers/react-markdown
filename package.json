@@ -68,5 +68,13 @@
   },
   "peerDependencies": {
     "react": "^15.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**.js"
+    ]
   }
 }
