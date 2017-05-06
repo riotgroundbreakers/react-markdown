@@ -1,4 +1,6 @@
-exports[`test can render the most basic of documents (single paragraph) 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can render the most basic of documents (single paragraph) 1`] = `
 <div>
   <p>
     Test
@@ -6,7 +8,7 @@ exports[`test can render the most basic of documents (single paragraph) 1`] = `
 </div>
 `;
 
-exports[`test should be able to render inline code 1`] = `
+exports[`should be able to render inline code 1`] = `
 <div>
   <p>
     Just call 
@@ -18,7 +20,7 @@ exports[`test should be able to render inline code 1`] = `
 </div>
 `;
 
-exports[`test should be able to render inline html 1`] = `
+exports[`should be able to render inline html 1`] = `
 <div>
   <p>
     I am having 
@@ -27,30 +29,32 @@ exports[`test should be able to render inline html 1`] = `
         Object {
           "__html": "<strong>",
         }
-      } />
+      }
+    />
     so
     <span
       dangerouslySetInnerHTML={
         Object {
           "__html": "</strong>",
         }
-      } />
+      }
+    />
      much fun
   </p>
 </div>
 `;
 
-exports[`test should escape html blocks by default 1`] = `
+exports[`should escape html blocks by default 1`] = `
 <div>
   <p>
     This is a regular paragraph.
   </p>
   <span>
-    <table>
-        <tr>
-            <td>Foo</td>
-        </tr>
-    </table>
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Foo&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
   </span>
   <p>
     This is another regular paragraph.
@@ -58,7 +62,7 @@ exports[`test should escape html blocks by default 1`] = `
 </div>
 `;
 
-exports[`test should handle blockquotes 1`] = `
+exports[`should handle blockquotes 1`] = `
 <div>
   <blockquote>
     <p>
@@ -70,7 +74,7 @@ exports[`test should handle blockquotes 1`] = `
 </div>
 `;
 
-exports[`test should handle bold/strong text 1`] = `
+exports[`should handle bold/strong text 1`] = `
 <div>
   <p>
     React is 
@@ -85,30 +89,31 @@ exports[`test should handle bold/strong text 1`] = `
 </div>
 `;
 
-exports[`test should handle code tags with language specification 1`] = `
+exports[`should handle code tags with language specification 1`] = `
 <div>
   <pre>
     <code
-      className="language-js">
-      var foo = require(\'bar\');
+      className="language-js"
+    >
+      var foo = require('bar');
       foo();
     </code>
   </pre>
 </div>
 `;
 
-exports[`test should handle code tags without any language specification 1`] = `
+exports[`should handle code tags without any language specification 1`] = `
 <div>
   <pre>
     <code>
-      var foo = require(\'bar\');
+      var foo = require('bar');
       foo();
     </code>
   </pre>
 </div>
 `;
 
-exports[`test should handle emphasis 1`] = `
+exports[`should handle emphasis 1`] = `
 <div>
   <p>
     React is 
@@ -123,7 +128,7 @@ exports[`test should handle emphasis 1`] = `
 </div>
 `;
 
-exports[`test should handle horizontal rules 1`] = `
+exports[`should handle horizontal rules 1`] = `
 <div>
   <p>
     Foo
@@ -135,7 +140,7 @@ exports[`test should handle horizontal rules 1`] = `
 </div>
 `;
 
-exports[`test should handle html blocks 1`] = `
+exports[`should handle html blocks 1`] = `
 <div>
   <p>
     This is a regular paragraph.
@@ -149,73 +154,78 @@ exports[`test should handle html blocks 1`] = `
           </tr>
       </table>",
       }
-    } />
+    }
+  />
   <p>
     This is another regular paragraph.
   </p>
 </div>
 `;
 
-exports[`test should handle images with special characters in alternative text 1`] = `
+exports[`should handle images with special characters in alternative text 1`] = `
 <div>
   <p>
     This is 
     <img
-      alt="a ninja\'s image"
-      src="/ninja.png" />
+      alt="a ninja's image"
+      src="/ninja.png"
+    />
     .
   </p>
 </div>
 `;
 
-exports[`test should handle images with title attribute 1`] = `
+exports[`should handle images with title attribute 1`] = `
 <div>
   <p>
     This is 
     <img
       alt="an image"
       src="/ninja.png"
-      title="foo bar" />
+      title="foo bar"
+    />
     .
   </p>
 </div>
 `;
 
-exports[`test should handle images without title attribute 1`] = `
+exports[`should handle images without title attribute 1`] = `
 <div>
   <p>
     This is 
     <img
       alt="an image"
-      src="/ninja.png" />
+      src="/ninja.png"
+    />
     .
   </p>
 </div>
 `;
 
-exports[`test should handle inline html with escapeHtml option enabled 1`] = `
+exports[`should handle inline html with escapeHtml option enabled 1`] = `
 <div>
   <p>
     I am having 
     <span>
-      <strong>
+      &lt;strong&gt;
     </span>
     so
     <span>
-      </strong>
+      &lt;/strong&gt;
     </span>
      much fun
   </p>
 </div>
 `;
 
-exports[`test should handle links with title attribute 1`] = `
+exports[`should handle links with title attribute 1`] = `
 <div>
   <p>
     This is 
     <a
       href="https://espen.codes/"
-      title="some title">
+      title="some title"
+    >
       a link
     </a>
      to Espen.Codes.
@@ -223,12 +233,13 @@ exports[`test should handle links with title attribute 1`] = `
 </div>
 `;
 
-exports[`test should handle links without title attribute 1`] = `
+exports[`should handle links without title attribute 1`] = `
 <div>
   <p>
     This is 
     <a
-      href="https://espen.codes/">
+      href="https://espen.codes/"
+    >
       a link
     </a>
      to Espen.Codes.
@@ -236,7 +247,7 @@ exports[`test should handle links without title attribute 1`] = `
 </div>
 `;
 
-exports[`test should handle loose, unordered lists 1`] = `
+exports[`should handle loose, unordered lists 1`] = `
 <div>
   <ul>
     <li>
@@ -251,7 +262,7 @@ exports[`test should handle loose, unordered lists 1`] = `
 </div>
 `;
 
-exports[`test should handle multiline paragraphs properly (softbreak, paragraphs) 1`] = `
+exports[`should handle multiline paragraphs properly (softbreak, paragraphs) 1`] = `
 <div>
   <p>
     React is awesome
@@ -262,7 +273,7 @@ exports[`test should handle multiline paragraphs properly (softbreak, paragraphs
 </div>
 `;
 
-exports[`test should handle multiple paragraphs properly 1`] = `
+exports[`should handle multiple paragraphs properly 1`] = `
 <div>
   <p>
     React is awesome
@@ -274,7 +285,7 @@ exports[`test should handle multiple paragraphs properly 1`] = `
 </div>
 `;
 
-exports[`test should handle nested blockquotes 1`] = `
+exports[`should handle nested blockquotes 1`] = `
 <div>
   <blockquote>
     <blockquote>
@@ -283,21 +294,21 @@ exports[`test should handle nested blockquotes 1`] = `
       </p>
     </blockquote>
     <p>
-      Totally didn\'t know that.
+      Totally didn't know that.
     </p>
     <blockquote>
       <p>
-        There\'s a reason why it turned out so awesome
+        There's a reason why it turned out so awesome
       </p>
     </blockquote>
     <p>
-      Haha I guess you\'re right!
+      Haha I guess you're right!
     </p>
   </blockquote>
 </div>
 `;
 
-exports[`test should handle ordered lists 1`] = `
+exports[`should handle ordered lists 1`] = `
 <div>
   <ol>
     <li>
@@ -313,10 +324,11 @@ exports[`test should handle ordered lists 1`] = `
 </div>
 `;
 
-exports[`test should handle ordered lists with a start index 1`] = `
+exports[`should handle ordered lists with a start index 1`] = `
 <div>
   <ol
-    start="7">
+    start="7"
+  >
     <li>
       Ordered
     </li>
@@ -330,7 +342,7 @@ exports[`test should handle ordered lists with a start index 1`] = `
 </div>
 `;
 
-exports[`test should handle tight, unordered lists 1`] = `
+exports[`should handle tight, unordered lists 1`] = `
 <div>
   <ul>
     <li>
@@ -346,23 +358,27 @@ exports[`test should handle tight, unordered lists 1`] = `
 </div>
 `;
 
-exports[`test should set source position attributes if sourcePos option is enabled 1`] = `
+exports[`should set source position attributes if sourcePos option is enabled 1`] = `
 <div
-  data-sourcepos="1:1-5:4">
+  data-sourcepos="1:1-5:4"
+>
   <p
-    data-sourcepos="1:1-1:4">
+    data-sourcepos="1:1-1:4"
+  >
     Foo
   </p>
   <hr
-    data-sourcepos="3:1-3:13" />
+    data-sourcepos="3:1-3:13"
+  />
   <p
-    data-sourcepos="5:1-5:4">
+    data-sourcepos="5:1-5:4"
+  >
     Bar
   </p>
 </div>
 `;
 
-exports[`test should skip html blocks if skipHtml prop is set 1`] = `
+exports[`should skip html blocks if skipHtml prop is set 1`] = `
 <div>
   <p>
     This is a regular paragraph.
@@ -373,7 +389,7 @@ exports[`test should skip html blocks if skipHtml prop is set 1`] = `
 </div>
 `;
 
-exports[`test should skip inline html with skipHtml option enabled 1`] = `
+exports[`should skip inline html with skipHtml option enabled 1`] = `
 <div>
   <p>
     I am having 
@@ -383,7 +399,7 @@ exports[`test should skip inline html with skipHtml option enabled 1`] = `
 </div>
 `;
 
-exports[`test should skip nodes that are defined as disallowed 1`] = `
+exports[`should skip nodes that are defined as disallowed 1`] = `
 <div>
   <h1>
     Header
@@ -401,7 +417,7 @@ exports[`test should skip nodes that are defined as disallowed 1`] = `
 </div>
 `;
 
-exports[`test should skip nodes that are not defined as allowed 1`] = `
+exports[`should skip nodes that are not defined as allowed 1`] = `
 <div>
   <p>
     Paragraph
@@ -417,7 +433,7 @@ exports[`test should skip nodes that are not defined as allowed 1`] = `
 </div>
 `;
 
-exports[`test should unwrap child nodes from disallowed nodes, if unwrapDisallowed option is enabled 1`] = `
+exports[`should unwrap child nodes from disallowed nodes, if unwrapDisallowed option is enabled 1`] = `
 <div>
   <p>
     Espen 
@@ -431,9 +447,10 @@ exports[`test should unwrap child nodes from disallowed nodes, if unwrapDisallow
 </div>
 `;
 
-exports[`test uses passed classname for root component 1`] = `
+exports[`uses passed classname for root component 1`] = `
 <div
-  className="md">
+  className="md"
+>
   <p>
     Test
   </p>
