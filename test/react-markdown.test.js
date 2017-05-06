@@ -268,6 +268,24 @@ it('should render tables', () => {
   expect(renderHTML(<Markdown source={input} />)).toMatchSnapshot()
 })
 
+it('should render link references', () => {
+  const input = [
+    'Stuff were changed in [1.1.4]. Check out the changelog for reference.', '',
+    '[1.1.4]: https://github.com/rexxars/react-markdown/compare/v1.1.3...v1.1.4'
+  ].join('\n')
+
+  expect(renderHTML(<Markdown source={input} />)).toMatchSnapshot()
+})
+
+it('should render image references', () => {
+  const input = [
+    'Checkout out this ninja: ![The Waffle Ninja][ninja]. Pretty neat, eh?', '',
+    '[ninja]: /assets/ninja.png'
+  ].join('\n')
+
+  expect(renderHTML(<Markdown source={input} />)).toMatchSnapshot()
+})
+
 describe('should skip nodes that are defined as disallowed', () => {
   var samples = {
     html: {input: 'Foo<strong>bar</strong>', shouldNotContain: 'Foo<span><strong>'},
