@@ -357,5 +357,5 @@ it('should be able to override renderers', () => {
 it('should throw on invalid renderer', () => {
   const input = '# Header\n\nParagraph\n## New header\n1. List item\n2. List item 2\n\nFoo'
   const renderers = {heading: 123}
-  expect(() => renderHTML(<Markdown source={input} renderers={renderers} />)).toThrow(/Renderer for type "heading"/)
+  expect(() => renderHTML(<Markdown source={input} renderers={renderers} />)).toThrow(/Renderer for type `heading`/)
 })
