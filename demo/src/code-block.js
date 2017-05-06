@@ -3,28 +3,28 @@ const PropTypes = require('prop-types')
 const hljs = window.hljs
 
 class CodeBlock extends React.PureComponent {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.setRef = this.setRef.bind(this)
   }
 
-  setRef(el) {
+  setRef (el) {
     this.codeEl = el
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.highlightCode()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     this.highlightCode()
   }
 
-  highlightCode() {
+  highlightCode () {
     hljs.highlightBlock(this.codeEl)
   }
 
-  render() {
+  render () {
     return (
       <pre>
         <code ref={this.setRef} className={this.props.language}>{this.props.value}</code>

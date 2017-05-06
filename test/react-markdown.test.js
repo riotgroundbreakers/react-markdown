@@ -13,7 +13,7 @@ test('can render the most basic of documents (single paragraph)', () => {
 })
 
 test('uses passed classname for root component', () => {
-  const component = renderer.create(<Markdown className="md">Test</Markdown>)
+  const component = renderer.create(<Markdown className='md'>Test</Markdown>)
   expect(component.toJSON()).toMatchSnapshot()
 })
 
@@ -248,7 +248,7 @@ it('should render tables', () => {
     '| 1   | one     | en        | uno     |',
     '| 2   | two     | to        | due     |',
     '| 3   | three   | tre       | tre     |',
-    '',
+    ''
   ].join('\n')
 
   expect(renderHTML(<Markdown source={input} />)).toMatchSnapshot()

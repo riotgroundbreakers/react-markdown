@@ -30,7 +30,7 @@ module.exports = {
   html: Html
 }
 
-function TableCell(props) {
+function TableCell (props) {
   return createElement(
     props.isHeader ? 'th' : 'td',
     Object.assign(getCoreProps(props), {style: {textAlign: props.align}}),
@@ -38,11 +38,11 @@ function TableCell(props) {
   )
 }
 
-function Heading(props) {
+function Heading (props) {
   return createElement('h' + props.level, getCoreProps(props), props.children)
 }
 
-function List(props) {
+function List (props) {
   var attrs = getCoreProps(props)
   if (props.start !== null && props.start !== 1) {
     attrs.start = props.start.toString()
@@ -55,21 +55,21 @@ function List(props) {
   )
 }
 
-function ListItem(props) {
+function ListItem (props) {
   return createElement('li', getCoreProps(props), props.children)
 }
 
-function CodeBlock(props) {
+function CodeBlock (props) {
   var className = props.language && 'language-' + props.language
   var code = createElement('code', className ? {className: className} : null, props.value)
   return createElement('pre', getCoreProps(props), code)
 }
 
-function InlineCode(props) {
+function InlineCode (props) {
   return createElement('code', getCoreProps(props), props.children)
 }
 
-function Html(props) {
+function Html (props) {
   if (props.skipHtml) {
     return null
   }
@@ -83,10 +83,10 @@ function Html(props) {
   return createElement(props.isBlock ? 'div' : 'span', nodeProps)
 }
 
-function NullRenderer() {
+function NullRenderer () {
   return null
 }
 
-function getCoreProps(props) {
+function getCoreProps (props) {
   return props['data-sourcepos'] ? {'data-sourcepos': props['data-sourcepos']} : {}
 }

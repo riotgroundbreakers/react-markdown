@@ -4,7 +4,7 @@ var React = require('react')
 
 module.exports = astToReact
 
-function astToReact(node, options, parent = {}, index = 0) {
+function astToReact (node, options, parent = {}, index = 0) {
   if (node.type === 'text') {
     return node.value
   }
@@ -26,14 +26,14 @@ function astToReact(node, options, parent = {}, index = 0) {
     nodeProps.children || resolveChildren() || undefined
   )
 
-  function resolveChildren() {
+  function resolveChildren () {
     return node.children && node.children.map(
       (childNode, i) => astToReact(childNode, options, {node, props: nodeProps}, i)
     )
   }
 }
 
-function getNodeProps(node, key, opts, renderer, parent, index) { // eslint-disable-line max-params, complexity
+function getNodeProps (node, key, opts, renderer, parent, index) { // eslint-disable-line max-params, complexity
   var props = {key: key}
   var undef
 
@@ -138,7 +138,7 @@ function getNodeProps(node, key, opts, renderer, parent, index) { // eslint-disa
   return props
 }
 
-function assignDefined(target, attrs) {
+function assignDefined (target, attrs) {
   for (var key in attrs) {
     if (typeof attrs[key] !== 'undefined') {
       target[key] = attrs[key]
@@ -146,13 +146,13 @@ function assignDefined(target, attrs) {
   }
 }
 
-function flattenPosition(pos) {
+function flattenPosition (pos) {
   return [
     pos.start.line, ':', pos.start.column, '-',
     pos.end.line, ':', pos.end.column
   ].map(String).join('')
 }
 
-function unwrapFirstChild(node) {
+function unwrapFirstChild (node) {
   return (node.children && node.children[0] && node.children[0].children) || []
 }

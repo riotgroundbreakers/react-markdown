@@ -6,7 +6,7 @@ const MarkdownControls = require('./markdown-controls')
 const Markdown = require('../../')
 
 class Demo extends React.PureComponent {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handleControlsChange = this.handleControlsChange.bind(this)
@@ -31,18 +31,18 @@ class Demo extends React.PureComponent {
     }
   }
 
-  handleMarkdownChange(evt) {
+  handleMarkdownChange (evt) {
     this.setState({markdownSrc: evt.target.value})
   }
 
-  handleControlsChange(mode) {
+  handleControlsChange (mode) {
     this.setState({htmlMode: mode})
   }
 
-  render() {
+  render () {
     return (
-      <div className="demo">
-        <div className="editor-pane">
+      <div className='demo'>
+        <div className='editor-pane'>
           <MarkdownControls
             onChange={this.handleControlsChange}
             mode={this.state.htmlMode}
@@ -54,9 +54,9 @@ class Demo extends React.PureComponent {
           />
         </div>
 
-        <div className="result-pane">
+        <div className='result-pane'>
           <Markdown
-            className="result"
+            className='result'
             source={this.state.markdownSrc}
             skipHtml={this.state.htmlMode === 'skip'}
             escapeHtml={this.state.htmlMode === 'escape'}

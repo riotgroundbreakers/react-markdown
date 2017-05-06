@@ -2,12 +2,12 @@ const React = require('react')
 const PropTypes = require('prop-types')
 const CodeMirror = window.CodeMirrorEditor
 
-function Editor(props) {
+function Editor (props) {
   return (
-    <form className="editor pure-form">
+    <form className='editor pure-form'>
       <CodeMirror
-        mode="markdown"
-        theme="monokai"
+        mode='markdown'
+        theme='monokai'
         value={props.value}
         onChange={props.onChange}
       />

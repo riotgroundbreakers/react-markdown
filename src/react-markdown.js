@@ -12,7 +12,7 @@ var disallowNode = require('./plugins/disallow-node')
 
 var allTypes = Object.keys(defaultRenderers)
 
-var ReactMarkdown = function ReactMarkdown(props) {
+var ReactMarkdown = function ReactMarkdown (props) {
   var src = props.source || props.children || ''
 
   if (props.allowedTypes && props.disallowedTypes) {

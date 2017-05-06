@@ -8,7 +8,7 @@ var ReactDom = require('react-dom/server')
 var Markdown = require('./react-markdown')
 var log = thing => console.log(util.inspect(thing, {colors: true, depth: 10}))
 
-/*var md = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8')
+/* var md = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8')
 var ast = unified().use(parse).parse(md)
 log(ast)
 console.log('==============================================')

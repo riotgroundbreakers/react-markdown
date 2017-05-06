@@ -9,7 +9,7 @@ exports.ofType = function (types, mode) {
     return node
   }
 
-  function disallow(node, index, parent) {
+  function disallow (node, index, parent) {
     if (parent) {
       untangle(node, index, parent, mode)
     }
@@ -22,14 +22,14 @@ exports.ifNotMatch = function (allowNode, mode) {
     return node
   }
 
-  function disallow(node, index, parent) {
+  function disallow (node, index, parent) {
     if (parent && !allowNode(node, index, parent)) {
       untangle(node, index, parent, mode)
     }
   }
 }
 
-function untangle(node, index, parent, mode) {
+function untangle (node, index, parent, mode) {
   if (mode === 'remove') {
     parent.children.splice(index, 1)
   } else if (mode === 'unwrap') {

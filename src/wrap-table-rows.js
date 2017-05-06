@@ -7,7 +7,7 @@ module.exports = node => {
   return node
 }
 
-function wrap(table) {
+function wrap (table) {
   var children = table.children
   table.children = [{
     type: 'tableHead',
