@@ -5,7 +5,7 @@ var webpack = require('webpack')
 var prod = process.env.NODE_ENV === 'production' // eslint-disable-line no-process-env
 
 var config = {
-  devtool: prod ? null : 'eval',
+  devtool: prod ? false : 'eval',
 
   entry: [
     path.join(__dirname, 'demo', 'src', 'demo.js')
@@ -19,7 +19,7 @@ var config = {
   },
 
   externals: {
-    'react': {
+    react: {
       root: 'React',
       commonjs: 'react',
       commonjs2: 'react',
@@ -36,21 +36,16 @@ var config = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /node_modules/,
       query: {
         cacheDirectory: true,
         presets: ['react']
       }
-    }, {
-      test: /\.json$/,
-      loader: 'json'
     }]
   },
 
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ]
+  plugins: []
 }
 
 if (prod) {
@@ -59,8 +54,6 @@ if (prod) {
       NODE_ENV: JSON.stringify('production')
     }
   }))
-  config.plugins.push(new webpack.optimize.DedupePlugin())
-  config.plugins.push(new webpack.optimize.OccurenceOrderPlugin(true))
   config.plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
 

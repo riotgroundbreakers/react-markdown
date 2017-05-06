@@ -1,6 +1,5 @@
 {
   "extends": ["bengler", "bengler/react"],
-  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
