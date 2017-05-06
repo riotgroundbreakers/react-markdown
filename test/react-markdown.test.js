@@ -1,3 +1,4 @@
+/* eslint-env jest */
 const React = require('react')
 const ReactDom = require('react-dom/server')
 const renderer = require('react-test-renderer')

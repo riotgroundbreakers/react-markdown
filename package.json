@@ -13,7 +13,7 @@
     "build": "NODE_ENV=production webpack -p",
     "coverage": "jest --coverage",
     "deploy": "gh-pages-deploy",
-    "lint": "eslint .",
+    "lint": "standard",
     "prepublish": "in-publish && npm run qa || not-in-publish",
     "aposttest": "npm run lint",
     "qa": "npm prune && npm test && npm run build",
@@ -38,6 +38,7 @@
     "object-assign": "^4.1.0",
     "prop-types": "^15.5.8",
     "remark-parse": "^2.0.2",
+    "standard": "^10.0.2",
     "unified": "^5.1.0",
     "unist-util-visit": "^1.1.0"
   },
@@ -46,9 +47,6 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^3.19.0",
-    "eslint-config-bengler": "^3.1.4",
-    "eslint-plugin-react": "^7.0.0",
     "gh-pages-deploy": "^0.4.2",
     "htmltidy": "^0.0.6",
     "jest": "^20.0.0",
@@ -67,6 +65,14 @@
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
       "src/**.js"
+    ]
+  },
+  "standard": {
+    "ignore": [
+      "/coverage",
+      "/demo/dist",
+      "/node_modules",
+      "/umd"
     ]
   }
 }
