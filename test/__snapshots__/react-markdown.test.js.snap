@@ -218,6 +218,20 @@ exports[`should handle inline html with escapeHtml option enabled 1`] = `
 </div>
 `;
 
+exports[`should handle links with custom uri transformer 1`] = `
+<div>
+  <p>
+    This is 
+    <a
+      href="//espen.codes/"
+    >
+      a link
+    </a>
+     to Espen.Codes.
+  </p>
+</div>
+`;
+
 exports[`should handle links with title attribute 1`] = `
 <div>
   <p>

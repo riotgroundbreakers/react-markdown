@@ -53,6 +53,13 @@ it('should handle links with title attribute', () => {
   expect(component.toJSON()).toMatchSnapshot()
 })
 
+it('should handle links with custom uri transformer', () => {
+  const input = 'This is [a link](https://espen.codes/) to Espen.Codes.'
+  const transform = uri => uri.replace(/^https?:/, '')
+  const component = renderer.create(<Markdown transformLinkUri={transform} source={input} />)
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
 it('should handle images without title attribute', () => {
   const input = 'This is ![an image](/ninja.png).'
   const component = renderer.create(<Markdown source={input} />)
