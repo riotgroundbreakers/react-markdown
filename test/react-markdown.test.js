@@ -72,6 +72,13 @@ it('should handle images with title attribute', () => {
   expect(component.toJSON()).toMatchSnapshot()
 })
 
+it('should handle images with custom uri transformer', () => {
+  const input = 'This is ![an image](/ninja.png).'
+  const transform = uri => uri.replace(/\.png$/, '.jpg')
+  const component = renderer.create(<Markdown transformImageUri={transform} source={input} />)
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
 it('should handle images with special characters in alternative text', () => {
   const input = 'This is ![a ninja\'s image](/ninja.png).'
   const component = renderer.create(<Markdown source={input} />)

@@ -162,6 +162,19 @@ exports[`should handle html blocks 1`] = `
 </div>
 `;
 
+exports[`should handle images with custom uri transformer 1`] = `
+<div>
+  <p>
+    This is 
+    <img
+      alt="an image"
+      src="/ninja.jpg"
+    />
+    .
+  </p>
+</div>
+`;
+
 exports[`should handle images with special characters in alternative text 1`] = `
 <div>
   <p>
